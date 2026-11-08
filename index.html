@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PORA RW 12">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PORA RW 12 2027 — Sistem Pertandingan Antar RT</title>
@@ -278,12 +287,34 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13px}
   .login-wrap{grid-template-columns:1fr}
   .login-hero{display:none}
 }
+@media (max-width:768px){
+  .topbar{padding:10px 14px;gap:8px}
+  .topbar h2{font-size:16px}
+  .topbar .crumb{display:none}
+  .chip#top-date{display:none}
+  .chip#top-user{padding:4px 8px;font-size:11px}
+  .install-btn{padding:5px 9px;font-size:11.5px}
+  .content{padding:14px 12px 60px}
+  .page-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .page-head .spacer{display:none}
+  .toolbar{gap:8px}
+  .toolbar > *{flex:1 1 calc(50% - 8px);min-width:140px}
+  .toolbar .search{min-width:100%;flex:1 1 100%}
+  .tabs{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;padding:4px}
+  .tabs button{white-space:nowrap;flex:0 0 auto;padding:7px 12px;font-size:12px}
+  .tbl-wrap{margin:0 -12px;border-radius:0;-webkit-overflow-scrolling:touch}
+  .bagan{margin:0 -12px;padding:12px 14px}
+  .modal{border-radius:16px;max-height:92vh}
+  .modal-b{padding:14px;max-height:calc(92vh - 120px);overflow-y:auto}
+  .modal-h{padding:14px 16px}
+  .modal-f{padding:12px 16px}
+}
 @media (max-width:640px){
   .g2,.g3,.g4,.g5{grid-template-columns:1fr}
-  .content{padding:16px 14px 40px}
   .form-grid,.row2,.row3{grid-template-columns:1fr}
+  .login-card{padding:24px 18px}
+  .login-card h2{font-size:20px}
 }
-
 /* ---------- Print ---------- */
 @media print{
   body{background:#fff}
@@ -368,13 +399,7 @@ svg[class=""]{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:
         </div>
         <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px" type="submit">Masuk Dashboard</button>
       </form>
-      <div class="demo-acc">
-        <h4>Akun Demo &mdash; klik untuk mengisi otomatis</h4>
-        <button type="button" data-act="demo-login" data-u="admin" data-p="admin123"><span>Admin &mdash; akses penuh</span><span>admin / admin123</span></button>
-        <button type="button" data-act="demo-login" data-u="panitia" data-p="panitia123"><span>Panitia</span><span>panitia / panitia123</span></button>
-        <button type="button" data-act="demo-login" data-u="wasit" data-p="wasit123"><span>Wasit</span><span>wasit / wasit123</span></button>
-        <button type="button" data-act="demo-login" data-u="rt01" data-p="rt123"><span>Ketua RT 01</span><span>rt01 / rt123</span></button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -397,6 +422,9 @@ svg[class=""]{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:
           <div class="nm" id="side-name">Admin</div>
           <div class="rl" id="side-role">Administrator</div>
         </div>
+        <button class="btn btn-icon btn-ghost install-btn" id="btn-install-side" data-act="app-install" title="Instal Aplikasi ke Layar Utama" style="color:#a5a1d4;margin-left:auto">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
         <button class="btn btn-icon btn-ghost" style="margin-left:auto;color:#b8b6d8" data-act="logout" title="Keluar">
           <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
@@ -413,6 +441,10 @@ svg[class=""]{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:
         <div class="crumb" id="crumb">Dashboard</div>
         <h2 id="page-title">Dashboard</h2>
       </div>
+      <button class="btn btn-primary btn-sm install-btn" id="btn-install-top" data-act="app-install" title="Instal Aplikasi PORA RW 12">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Instal App</span>
+      </button>
       <div class="spacer"></div>
       <div class="chip" id="top-date"></div>
       <div class="chip" id="top-user"></div>
@@ -586,7 +618,14 @@ function logAksi(modul, aksi, detail){
 }
 
 /* ---------- persist ---------- */
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ console.warn('save gagal', e); } }
+function save(){
+  try{
+    if(typeof syncState === 'function') syncState();
+    localStorage.setItem(KEY, JSON.stringify(S));
+  }catch(e){
+    console.warn('save gagal', e);
+  }
+}
 function load(){
   try{ const raw = localStorage.getItem(KEY); if(raw){ S = JSON.parse(raw); if(S && S.rts) return true; } }catch(e){}
   return false;
@@ -1697,7 +1736,7 @@ Pages.atlet = {
       <button class="${tab==='kontingen'?'active':''}" data-act="atlet-tab" data-tab="kontingen">Kontingen RT</button>
     </div>`;
     return `<div class="page-head">
-        <div><h3>Atlet & Kontingen RT</h3><p>${S.atlet.length} atlet dari ${S.rts.length} kontingen RT terdaftar</p></div>
+        <div><h3>Atlet & Kontingen RT</h3><p>${S.atlet.length} atlet dari ${S.kontingen.length} kontingen RT terdaftar</p></div>
       </div>${tabs}${tab === 'atlet' ? this.renderAtlet() : this.renderKontingen()}`;
   },
   renderAtlet(){
@@ -1743,7 +1782,14 @@ Pages.atlet = {
   renderKontingen(){
     const canEdit = ['admin','panitia'].includes(S.session.role);
     const roleRt = S.session.role === 'rt' ? S.session.rtId : null;
-    return `<div class="grid g3">${S.kontingen.filter(k => !roleRt || k.rtId === roleRt).map(k => {
+    const kontingenList = S.kontingen.filter(k => !roleRt || k.rtId === roleRt);
+    return `
+    <div class="toolbar" style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:14px;color:var(--ink)">Daftar Kontingen RT (${kontingenList.length})</div>
+      <div style="flex:1"></div>
+      ${canEdit ? `<button class="btn btn-primary" data-act="kontingen-add">${icon('plus')} Tambah Kontingen</button>` : ''}
+    </div>
+    <div class="grid g3">${kontingenList.map(k => {
       const rt = rtById(k.rtId) || {};
       const atlet = S.atlet.filter(a => a.rtId === k.rtId);
       const caborIkut = Array.from(new Set(atlet.map(a => a.caborId))).map(caborNama);
@@ -1764,7 +1810,9 @@ Pages.atlet = {
         ${k.catatan ? '<div style="margin-top:10px;font-size:12px;color:var(--ink-3);font-style:italic">' + esc(k.catatan) + '</div>' : ''}
         ${canEdit ? `<div style="display:flex;gap:8px;margin-top:12px">
           <button class="btn btn-sm" style="flex:1;justify-content:center" data-act="kontingen-edit" data-id="${k.id}">${icon('edit')} Edit Kontingen</button>
-          <button class="btn btn-sm" data-act="rt-edit" data-id="${k.rtId}">${icon('users')} Data RT</button></div>` : ''}
+          <button class="btn btn-sm" data-act="rt-edit" data-id="${k.rtId}">${icon('users')} Data RT</button>
+          <button class="btn btn-sm btn-danger" data-act="kontingen-del" data-id="${k.id}" title="Hapus Kontingen">${icon('trash')}</button>
+        </div>` : ''}
       </div></div>`;
     }).join('')}</div>`;
   }
@@ -1788,15 +1836,18 @@ function atletForm(v){
     </div>
   </form>`;
 }
+
 Actions['atlet-add'] = () => openModal('Tambah Atlet', atletForm(), { footer:
   '<button class="btn" data-act="modal-close">Batal</button>' +
   '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan Atlet</button>' });
+
 Actions['atlet-edit'] = el => {
   const a = atletById(el.dataset.id); if(!a) return;
   openModal('Edit Atlet — ' + a.nama, atletForm(a), { footer:
     '<button class="btn" data-act="modal-close">Batal</button>' +
     '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan Perubahan</button>' });
 };
+
 Actions['atlet-del'] = el => {
   const a = atletById(el.dataset.id); if(!a) return;
   confirmDialog('Hapus Atlet', 'Hapus atlet "' + a.nama + '" dari kontingen ' + rtNama(a.rtId) + '?', () => {
@@ -1805,10 +1856,12 @@ Actions['atlet-del'] = el => {
     save(); rerender(); showToast('Atlet dihapus', 'warn');
   }, true);
 };
+
 Actions['atlet-csv'] = () => {
   const rows = S.atlet.map(a => [a.nama, rtNama(a.rtId), caborNama(a.caborId), a.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan', a.usia, a.noHp, a.status]);
   exportCSV('atlet-pora-rw12-' + S.settings.tahun + '.csv', ['Nama','RT','Cabor','Jenis Kelamin','Usia','No HP','Status'], rows);
 };
+
 Forms.atlet = fd => {
   const id = $('#modal-form').dataset.id;
   if(!fd.nama){ showToast('Nama atlet wajib diisi', 'bad'); return; }
@@ -1826,28 +1879,90 @@ Forms.atlet = fd => {
 };
 
 function kontingenForm(k){
-  const rt = rtById(k.rtId) || {};
-  return `<form id="modal-form" data-form="kontingen" data-id="${esc(k.id)}">
+  k = k || {};
+  const isNew = !k.id;
+  const rt = (k.rtId ? rtById(k.rtId) : null) || {};
+  const rtOptions = [{ v: '__new__', t: '+ Buat RT Baru Otomatis' }].concat(
+    S.rts.map(r => ({ v: r.id, t: r.nama + ' (' + (r.ketua || 'Belum ada ketua') + ')' }))
+  );
+  return `<form id="modal-form" data-form="kontingen" data-id="${esc(k.id || '')}">
     <div class="form-grid">
-      ${fReq('namaKontingen','Nama Kontingen', k.namaKontingen)}
-      ${fText('ketua','Ketua Kontingen', k.ketua || rt.ketua)}
-      ${fText('official','Official Pendamping', k.official)}
-      ${fArea('catatan','Catatan', k.catatan)}
+      ${isNew ? fReqSelect('rtId', 'Pilih RT Terdaftar / Buat RT Baru', rtOptions, k.rtId || (S.rts[0] ? S.rts[0].id : '__new__')) : ''}
+      ${fReq('namaKontingen','Nama Kontingen (mis. Kontingen RT 11)', k.namaKontingen || '')}
+      ${fText('ketua','Ketua Kontingen', k.ketua || rt.ketua || '')}
+      ${fText('official','Official Pendamping', k.official || '')}
+      ${isNew ? fText('rtNama','Nama RT (khusus jika Buat RT Baru)', '', 'placeholder="mis. RT 11"') : ''}
+      ${isNew ? fText('warna','Warna Kontingen (khusus Buat RT Baru)', '#6366f1', 'type="color"') : ''}
+      ${fArea('catatan','Catatan', k.catatan || '')}
     </div>
   </form>`;
 }
+
+Actions['kontingen-add'] = () => {
+  openModal('Tambah Kontingen RT', kontingenForm(), { footer:
+    '<button class="btn" data-act="modal-close">Batal</button>' +
+    '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan Kontingen</button>'
+  });
+};
+
 Actions['kontingen-edit'] = el => {
   const k = S.kontingen.find(x => x.id === el.dataset.id); if(!k) return;
   openModal('Edit Kontingen — ' + k.namaKontingen, kontingenForm(k), { footer:
     '<button class="btn" data-act="modal-close">Batal</button>' +
-    '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan</button>' });
+    '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan</button>'
+  });
 };
+
+Actions['kontingen-del'] = el => {
+  const k = S.kontingen.find(x => x.id === el.dataset.id); if(!k) return;
+  confirmDialog('Hapus Kontingen', 'Hapus "' + k.namaKontingen + '"? Data atlet dan RT yang terhubung tidak akan terhapus.', () => {
+    S.kontingen = S.kontingen.filter(x => x.id !== k.id);
+    logAksi('Kontingen', 'Menghapus kontingen RT', k.namaKontingen);
+    save(); rerender(); showToast('Kontingen dihapus', 'warn');
+  }, true);
+};
+
 Forms.kontingen = fd => {
-  const k = S.kontingen.find(x => x.id === $('#modal-form').dataset.id); if(!k) return;
-  Object.assign(k, { namaKontingen:fd.namaKontingen, ketua:fd.ketua, official:fd.official, catatan:fd.catatan });
-  logAksi('Kontingen', 'Mengubah kontingen RT', fd.namaKontingen);
-  save(); closeModal(); rerender(); showToast('Kontingen diperbarui');
+  const formId = $('#modal-form').dataset.id;
+  if(!fd.namaKontingen){ showToast('Nama kontingen wajib diisi', 'bad'); return; }
+  
+  if(formId){
+    const k = S.kontingen.find(x => x.id === formId); if(!k) return;
+    Object.assign(k, { namaKontingen:fd.namaKontingen, ketua:fd.ketua, official:fd.official, catatan:fd.catatan });
+    logAksi('Kontingen', 'Mengubah kontingen RT', fd.namaKontingen);
+    save(); closeModal(); rerender(); showToast('Kontingen diperbarui');
+  } else {
+    let rtId = fd.rtId;
+    if(!rtId || rtId === '__new__'){
+      const nextNum = S.rts.length + 1;
+      const rtNamaDefault = fd.rtNama || ('RT ' + String(nextNum).padStart(2, '0'));
+      const palet = ['#6366f1','#0ea5e9','#10b981','#f59e0b','#ef4444','#ec4899','#8b5cf6','#14b8a6','#f97316','#64748b'];
+      const defaultWarna = palet[(nextNum - 1) % palet.length];
+      const newRt = {
+        id: 'rt' + nextNum + '_' + Date.now().toString(36),
+        nama: rtNamaDefault,
+        ketua: fd.ketua || '',
+        alamat: 'Wilayah RW 12',
+        noHp: '',
+        warna: fd.warna || defaultWarna
+      };
+      S.rts.push(newRt);
+      rtId = newRt.id;
+    }
+    const newK = {
+      id: uid('kg'),
+      rtId: rtId,
+      namaKontingen: fd.namaKontingen,
+      ketua: fd.ketua || '',
+      official: fd.official || '',
+      catatan: fd.catatan || ''
+    };
+    S.kontingen.push(newK);
+    logAksi('Kontingen', 'Menambah kontingen RT baru', fd.namaKontingen);
+    save(); closeModal(); rerender(); showToast('Kontingen baru berhasil ditambahkan');
+  }
 };
+
 Actions['rt-edit'] = el => {
   const r = rtById(el.dataset.id); if(!r) return;
   openModal('Data RT — ' + r.nama, `<form id="modal-form" data-form="rt" data-id="${r.id}">
@@ -1861,13 +1976,13 @@ Actions['rt-edit'] = el => {
     '<button class="btn" data-act="modal-close">Batal</button>' +
     '<button class="btn btn-primary" data-act="modal-submit">' + icon('save') + ' Simpan</button>' });
 };
+
 Forms.rt = fd => {
   const r = rtById($('#modal-form').dataset.id); if(!r) return;
   Object.assign(r, { nama:fd.nama, ketua:fd.ketua, alamat:fd.alamat, noHp:fd.noHp, warna:fd.warna || r.warna });
   logAksi('RT', 'Mengubah data RT', fd.nama);
   save(); closeModal(); rerender(); showToast('Data RT diperbarui');
 };
-
 /* ------------------ Wasit ------------------ */
 Pages.wasit = {
   title: 'Manajemen Wasit', icon: 'wasit', crumb: 'Manajemen Wasit', roles: ['admin','panitia'],
@@ -3054,7 +3169,7 @@ Pages.pengaturan = {
       <div class="card">
         <div class="card-h"><div><h3>Identitas Acara</h3><p>Informasi kegiatan yang tampil pada laporan &amp; cetak</p></div></div>
         <div class="card-b">
-          <form data-form="pengaturan" id="modal-form">
+          <form data-form="pengaturan" id="pengaturan-form">
             <div class="form-grid">
               ${fReq('namaAcara','Nama Kegiatan', st.namaAcara)}
               ${fText('singkatan','Singkatan (mis. PORA, POR RW)', st.singkatan)}
@@ -3352,23 +3467,63 @@ Actions['user-del'] = el => {
     save(); rerender(); showToast('Pengguna dihapus', 'warn');
   }, true);
 };
-Forms.user = fd => {
-  const id = $('#modal-form').dataset.id;
-  if(!fd.nama || !fd.username || !fd.password){ showToast('Lengkapi nama, username, dan sandi', 'bad'); return; }
-  const dup = (S.users || []).find(x => x.username === fd.username && x.id !== id);
-  if(dup){ showToast('Nama pengguna sudah dipakai', 'bad'); return; }
+Forms.user = (fd, form) => {
+  form = form || document.getElementById('modal-form');
+  const id = form ? form.dataset.id : '';
+  const nama = (fd.nama || '').trim();
+  const username = (fd.username || '').trim().toLowerCase();
+  const password = (fd.password || '').trim();
+  const role = fd.role || 'panitia';
+  const rtId = (role === 'rt' ? fd.rtId : null) || null;
+  const aktif = fd.status === '1';
+
+  if(!nama || !username || !password){
+    showToast('Lengkapi nama lengkap, username, dan kata sandi', 'bad');
+    return;
+  }
+  if(role === 'rt' && !rtId){
+    showToast('Pilih RT untuk akun dengan peran Ketua RT', 'bad');
+    return;
+  }
+  if(!Array.isArray(S.users)) S.users = [];
+
+  const dup = S.users.find(x => x.username.toLowerCase() === username && x.id !== id);
+  if(dup){
+    showToast('Nama pengguna "' + username + '" sudah digunakan. Gunakan username lain.', 'bad');
+    return;
+  }
+
   if(id){
     const u = S.users.find(x => x.id === id);
-    Object.assign(u, { nama:fd.nama, username:fd.username, password:fd.password, role:fd.role, rtId:fd.rtId || null, aktif: fd.status === '1' });
-    if(S.session && S.session.id === u.id) S.session = u;
-    logAksi('Pengguna', 'Mengubah akun login', fd.username + ' (' + fd.role + ')');
-    showToast('Pengguna diperbarui');
+    if(u){
+      Object.assign(u, { nama, username, password, role, rtId, aktif });
+      if(S.session && S.session.id === u.id){
+        S.session.nama = u.nama;
+        S.session.username = u.username;
+        S.session.role = u.role;
+        S.session.rtId = u.rtId;
+      }
+      logAksi('Pengguna', 'Mengubah akun login', username + ' (' + role + ')');
+      showToast('Pengguna "' + nama + '" berhasil diperbarui');
+    }
   } else {
-    S.users.push({ id: uid('u'), nama:fd.nama, username:fd.username, password:fd.password, role:fd.role, rtId:fd.rtId || null, aktif: fd.status === '1' });
-    logAksi('Pengguna', 'Menambah akun login', fd.username + ' (' + fd.role + ')');
-    showToast('Pengguna ditambahkan');
+    const newUser = {
+      id: uid('u'),
+      nama,
+      username,
+      password,
+      role,
+      rtId,
+      aktif
+    };
+    S.users.push(newUser);
+    logAksi('Pengguna', 'Menambah akun login baru', username + ' (' + role + ')');
+    showToast('Pengguna "' + nama + '" berhasil ditambahkan');
   }
-  save(); closeModal(); rerender();
+
+  save();
+  closeModal();
+  rerender();
 };
 
 Actions['backup-json'] = () => {
@@ -3595,6 +3750,173 @@ document.addEventListener('keydown', e => {
 });
 window.addEventListener('hashchange', () => { if(S && S.session) route(); });
 
+/* ---------- sinkronisasi relasional otomatis ---------- */
+function syncState(){
+  if(!S) return;
+  if(!Array.isArray(S.cabor)) S.cabor = [];
+  if(!Array.isArray(S.rts)) S.rts = [];
+  if(!Array.isArray(S.kontingen)) S.kontingen = [];
+  if(!Array.isArray(S.atlet)) S.atlet = [];
+  if(!Array.isArray(S.wasit)) S.wasit = [];
+  if(!Array.isArray(S.matches)) S.matches = [];
+  if(!Array.isArray(S.users)) S.users = [];
+
+  const caborIds = new Set(S.cabor.map(c => c.id));
+  const rtIds = new Set(S.rts.map(r => r.id));
+
+  // Pastikan setiap RT memiliki kontingen resmi
+  S.rts.forEach(r => {
+    let k = S.kontingen.find(x => x.rtId === r.id);
+    if(!k){
+      S.kontingen.push({
+        id: uid('kg'),
+        rtId: r.id,
+        namaKontingen: 'Kontingen ' + r.nama,
+        ketua: r.ketua || '',
+        official: '',
+        catatan: ''
+      });
+    }
+  });
+
+  // Sinkronkan referensi RT & Cabor pada atlet dan wasit
+  S.atlet.forEach(a => {
+    if(a.rtId && !rtIds.has(a.rtId)) a.rtId = S.rts[0] ? S.rts[0].id : '';
+    if(a.caborId && !caborIds.has(a.caborId)) a.caborId = S.cabor[0] ? S.cabor[0].id : '';
+  });
+
+  S.wasit.forEach(w => {
+    if(w.caborId && !caborIds.has(w.caborId)) w.caborId = S.cabor[0] ? S.cabor[0].id : '';
+  });
+
+  // Sinkronkan babak gugur pertandingan ke bagan
+  const gugurCabors = new Set(S.cabor.filter(c => c.format === 'gugur').map(c => c.id));
+  S.matches.forEach(m => {
+    if(gugurCabors.has(m.caborId)) advance(m);
+  });
+}
+
+/* Multi-tab / cross-window sync via storage event */
+window.addEventListener('storage', e => {
+  if(e.key === KEY && e.newValue){
+    try {
+      const fresh = JSON.parse(e.newValue);
+      if(fresh && fresh.rts){
+        const currentSession = S ? S.session : null;
+        S = fresh;
+        if(currentSession && !S.session) S.session = currentSession;
+        syncState();
+        renderBrand();
+        renderNav();
+        if(S.session) showApp(); else showLogin();
+        rerender();
+      }
+    } catch(err){}
+  }
+});
+
+/* ---------- PWA & Instalasi Otomatis (Desktop, Android, Apple iOS) ---------- */
+let deferredPrompt = null;
+const isAppleDevice = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) && ('ontouchend' in document || navigator.maxTouchPoints > 0);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator && window.navigator.standalone === true);
+
+function initPWA(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        console.log('PORA PWA ServiceWorker aktif');
+      }).catch(err => {
+        console.log('SW note:', err.message);
+      });
+    });
+  }
+  updateInstallButtonState();
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  updateInstallButtonState();
+});
+
+window.addEventListener('appinstalled', () => {
+  deferredPrompt = null;
+  updateInstallButtonState();
+  showToast('Aplikasi PORA RW 12 berhasil diinstal ke perangkat Anda!', 'ok');
+});
+
+function updateInstallButtonState(){
+  const topBtn = document.getElementById('btn-install-top');
+  const sideBtn = document.getElementById('btn-install-side');
+  const show = !isStandalone;
+  [topBtn, sideBtn].forEach(b => {
+    if(!b) return;
+    if(show){
+      b.classList.remove('hidden');
+    } else {
+      b.classList.add('hidden');
+    }
+  });
+}
+
+function handleInstallPrompt(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choiceResult => {
+      if(choiceResult.outcome === 'accepted'){
+        deferredPrompt = null;
+        updateInstallButtonState();
+      }
+    });
+    return;
+  }
+  // Modal panduan instal untuk Apple (iOS Safari / iPadOS) atau Desktop & Android
+  showInstallGuideModal();
+}
+
+function showInstallGuideModal(){
+  const content = `
+    <div style="text-align:center;padding:10px 0 16px">
+      <div style="width:68px;height:68px;border-radius:18px;background:var(--grad);margin:0 auto 14px;display:grid;place-items:center;color:#fff;box-shadow:0 8px 24px -6px rgba(99,102,241,.6)">
+        <svg viewBox="0 0 24 24" style="width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M8 21h8M12 17v4M7 4h10v6a5 5 0 0 1-10 0V4zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg>
+      </div>
+      <h3 style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:4px">Instal PORA RW 12</h3>
+      <p style="font-size:13px;color:var(--ink-2);max-width:380px;margin:0 auto 16px">Dapatkan aplikasi di Layar Utama (Home Screen) Anda untuk kemudahan akses dan tampilan layar penuh mandiri.</p>
+      
+      <div style="display:flex;flex-direction:column;gap:10px;text-align:left;background:#f8f9fe;border:1px solid var(--line);border-radius:14px;padding:14px">
+        <div style="display:flex;align-items:flex-start;gap:11px">
+          <div style="width:28px;height:28px;border-radius:8px;background:#e0e7ff;color:var(--primary);display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 auto">🍎</div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:var(--ink)">Apple iPhone & iPad (Safari)</div>
+            <div style="font-size:12px;color:var(--ink-2);line-height:1.4">Tekan tombol <b>Bagikan (Share)</b> <svg viewBox="0 0 24 24" style="display:inline;width:14px;height:14px;vertical-align:-2px;stroke:currentColor;fill:none;stroke-width:2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> di bar bawah Safari, gulir lalu pilih <b>Tambah ke Layar Utama (Add to Home Screen)</b>.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:11px;border-top:1px solid #e5e9f5;padding-top:10px">
+          <div style="width:28px;height:28px;border-radius:8px;background:#ecfdf5;color:#059669;display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 auto">🤖</div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:var(--ink)">Android (Chrome / Browser Lainnya)</div>
+            <div style="font-size:12px;color:var(--ink-2);line-height:1.4">Tekan menu titik tiga <b>(⋮)</b> di kanan atas, lalu pilih <b>Instal Aplikasi</b> atau <b>Tambahkan ke Layar Utama</b>.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:11px;border-top:1px solid #e5e9f5;padding-top:10px">
+          <div style="width:28px;height:28px;border-radius:8px;background:#f3f4f6;color:var(--ink-2);display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 auto">💻</div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:var(--ink)">Desktop (Chrome / Edge / Mac)</div>
+            <div style="font-size:12px;color:var(--ink-2);line-height:1.4">Klik ikon <b>Instal</b> pada bilah alamat URL (address bar) di pojok kanan atas browser Anda.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  openModal('Instal Aplikasi PORA RW 12', content, {
+    footer: '<button class="btn btn-primary" style="width:100%;justify-content:center" data-act="modal-close">Mengerti</button>'
+  });
+}
+
+BaseActions['app-install'] = () => handleInstallPrompt();
+
 /* ---------- boot ---------- */
 function boot(fromReset){
   if(!load()){ S = seedData(); save(); }
@@ -3602,11 +3924,14 @@ function boot(fromReset){
   S.settings = Object.assign(seedData().settings, S.settings || {});
   if(!S.logs) S.logs = [];
   if(!S.seasons) S.seasons = [];
+  syncState();
+  initPWA();
   renderBrand();
   if(S.session){ showApp(); }
   else showLogin();
   if(fromReset) showToast('Sistem direset ke data awal');
 }
+
 boot();
 
 
