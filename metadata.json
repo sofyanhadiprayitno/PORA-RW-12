@@ -1,0 +1,8 @@
+{
+  "name": "PORA RW 12 2027 — Sistem Pertandingan Antar RT",
+  "description": "Sistem Informasi Pertandingan Terpadu Pekan Olahraga & Silaturahmi RW 12 Tahun 2027. Kelola cabor, kontingen RT, jadwal, bagan, klasemen otomatis, dan laporan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
